@@ -26,11 +26,12 @@ def main():
     complete_data = analyzer.merge_data()
 
     visualizer = DataVisualizer(complete_data)
-    visualizer.plot_price_dispersion()
-    visualizer.plot_sales_over_time()
-    # visualizer.plot_sales_per_age()
-    visualizer.plot_sales_per_age_category()
-    visualizer.plot_sales_per_sex_age()
+    # visualizer.plot_price_dispersion()
+    # visualizer.plot_sales_over_time()
+    # # visualizer.plot_sales_per_age()
+    # visualizer.plot_sales_per_age_category()
+    # visualizer.plot_sales_per_sex_age()
+    visualizer.plot_average_purchase()
 
 
 if __name__ == "__main__":
