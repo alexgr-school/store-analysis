@@ -36,6 +36,8 @@ class DataVisualizer:
         plt.show()
 
     def plot_sales_per_age_category(self):
+        # Conversion de la colonne 'categ' en type entier
+        self.data['categ'] = self.data['categ'].astype(int)
         plt.figure(figsize=(12, 6))
         sns.histplot(self.data, x="age", hue="categ", bins=20, multiple="stack")
         plt.title("Répartition des ventes par âge et par catégorie")
