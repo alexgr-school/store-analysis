@@ -1,5 +1,11 @@
+import os
+
 import matplotlib.pyplot as plt
 import seaborn as sns
+from dotenv import load_dotenv
+
+load_dotenv()
+graphics_folder_path = os.getenv("GRAPHICS_FOLDER_PATH") or "./output/graphics"
 
 
 class DataVisualizer:
@@ -53,10 +59,12 @@ class DataVisualizer:
             y="age",
             data=self.data,
             order=["Homme", "Femme"],
-            palette={"Homme": "#3A92E9", "Femme": "#FF92E9"},
+            palette={"Homme": "#49BEE9", "Femme": "#FFBEE9"},
         )
         plt.title("Sexe par Âge")
         plt.xlabel("Sexe")
         plt.ylabel("Âge")
         plt.grid(True)
+        file_path = os.path.join(graphics_folder_path, "sexe_par_age.png")
+        plt.savefig(file_path, dpi=300)
         plt.show()
