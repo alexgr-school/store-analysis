@@ -9,10 +9,11 @@ graphics_folder_path = os.getenv("GRAPHICS_FOLDER_PATH") or "./output/graphics"
 
 
 class DataVisualizer:
-    def __init__(self, data):
+    def __init__(self, data, view=False):
         self.data = data
+        self.view = view
 
-    def plot_price_dispersion(self, view=False):
+    def plot_price_dispersion(self):
         plt.figure(figsize=(10, 6))
         sns.boxplot(
             x="categ",
@@ -26,10 +27,10 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "price_dispersion.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
 
-    def plot_sales_over_time(self, view=False):
+    def plot_sales_over_time(self):
         self.data["month"] = self.data["date"].dt.to_period("M")
         sales_per_month = self.data.groupby("month").size()
         plt.figure(figsize=(12, 6))
@@ -40,10 +41,10 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "sales_over_time.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
 
-    def plot_sales_per_age(self, view=False):
+    def plot_sales_per_age(self):
         plt.figure(figsize=(12, 6))
         sns.histplot(self.data["age"], bins=20)
         plt.title("Répartition des ventes par âge")
@@ -52,10 +53,10 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "sales_per_age.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
 
-    def plot_sales_per_age_category(self, view=False):
+    def plot_sales_per_age_category(self):
         plt.figure(figsize=(12, 6))
         sns.histplot(self.data, x="age", hue="categ", bins=20, multiple="stack")
         plt.title("Répartition des ventes par âge et par catégorie")
@@ -64,10 +65,10 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "sales_per_age_category.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
 
-    def plot_sales_per_sex_age(self, view=False):
+    def plot_sales_per_sex_age(self):
         self.data["sex"] = self.data["sex"].map({"m": "Homme", "f": "Femme"})
 
         plt.figure(figsize=(12, 6))
@@ -84,10 +85,10 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "sales_per_sex_age.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
 
-    def plot_average_purchase(self, view=False):
+    def plot_average_purchase(self):
         # Calcul du montant total des achats par client
         metrics_df = (
             self.data.groupby("client_id")
@@ -120,5 +121,5 @@ class DataVisualizer:
         plt.grid(True)
         file_path = os.path.join(graphics_folder_path, "average_purchase.png")
         plt.savefig(file_path, dpi=300)
-        if view:
+        if self.view:
             plt.show()
