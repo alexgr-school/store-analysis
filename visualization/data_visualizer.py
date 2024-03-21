@@ -43,3 +43,12 @@ class DataVisualizer:
         plt.ylabel("Nombre de ventes")
         plt.grid(True)
         plt.show()
+
+    def plot_sales_per_sex_age(self):
+        plt.figure(figsize=(12, 6))
+        sns.boxplot(x='sex', y='age', data=self.data, order=['m', 'f'])
+        plt.title('Sexe par Âge')
+        plt.xlabel('Sexe')
+        plt.ylabel('Âge')
+        plt.grid(True)
+        plt.show()
