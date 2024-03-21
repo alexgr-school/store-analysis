@@ -60,16 +60,3 @@ class DataVisualizer:
         plt.ylabel("Âge")
         plt.grid(True)
         plt.show()
-    
-    def plot_average_purchase(self):
-        # Calcul du montant total des achats par client
-        metrics_df = self.data.groupby('client_id').agg({
-            'price': 'sum',
-            'session_id': 'nunique',
-            'categ': lambda x: x.mode().iloc[0]
-        }).rename(columns={'price': 'Total Purchase', 'session_id': 'Frequency', 'categ': 'Most Purchased Category'}).reset_index()
-
-        sns.histplot(metrics_df['Total Purchase'] / metrics_df['Frequency'], bins=30, kde=False, color='red')
-        plt.title('Distribution de la Taille Moyenne du Panier')
-        plt.xlabel('Taille Moyenne du Panier')
-        plt.ylabel('Nombre de Clients')
