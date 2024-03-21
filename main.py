@@ -23,6 +23,7 @@ def main():
     visualizer.plot_sales_over_time()
     visualizer.plot_sales_per_age()
     visualizer.plot_sales_per_age_category()
+    visualizer.plot_sales_per_sex_age()
 
 
 if __name__ == "__main__":

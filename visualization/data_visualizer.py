@@ -36,8 +36,6 @@ class DataVisualizer:
         plt.show()
 
     def plot_sales_per_age_category(self):
-        # Conversion de la colonne 'categ' en type entier
-        self.data['categ'] = self.data['categ'].astype(int)
         plt.figure(figsize=(12, 6))
         sns.histplot(self.data, x="age", hue="categ", bins=20, multiple="stack")
         plt.title("Répartition des ventes par âge et par catégorie")
@@ -47,10 +45,18 @@ class DataVisualizer:
         plt.show()
 
     def plot_sales_per_sex_age(self):
+        self.data["sex"] = self.data["sex"].map({"m": "Homme", "f": "Femme"})
+
         plt.figure(figsize=(12, 6))
-        sns.boxplot(x='sex', y='age', data=self.data, order=['m', 'f'])
-        plt.title('Sexe par Âge')
-        plt.xlabel('Sexe')
-        plt.ylabel('Âge')
+        sns.boxplot(
+            x="sex",
+            y="age",
+            data=self.data,
+            order=["Homme", "Femme"],
+            palette={"Homme": "#3A92E9", "Femme": "#FF92E9"},
+        )
+        plt.title("Sexe par Âge")
+        plt.xlabel("Sexe")
+        plt.ylabel("Âge")
         plt.grid(True)
         plt.show()
