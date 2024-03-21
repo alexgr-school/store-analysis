@@ -21,6 +21,8 @@ def main():
     visualizer = DataVisualizer(complete_data)
     visualizer.plot_price_dispersion()
     visualizer.plot_sales_over_time()
+    visualizer.plot_sales_per_age()
+    visualizer.plot_sales_per_age_category()
 
 
 if __name__ == "__main__":

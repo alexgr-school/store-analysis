@@ -25,3 +25,21 @@ class DataVisualizer:
         plt.ylabel("Nombre de ventes")
         plt.grid(True)
         plt.show()
+
+    def plot_sales_per_age(self):
+        plt.figure(figsize=(12, 6))
+        sns.histplot(self.data["age"], bins=20)
+        plt.title("Répartition des ventes par âge")
+        plt.xlabel("Âge")
+        plt.ylabel("Nombre de ventes")
+        plt.grid(True)
+        plt.show()
+
+    def plot_sales_per_age_category(self):
+        plt.figure(figsize=(12, 6))
+        sns.histplot(self.data, x="age", hue="categ", bins=20, multiple="stack")
+        plt.title("Répartition des ventes par âge et par catégorie")
+        plt.xlabel("Âge")
+        plt.ylabel("Nombre de ventes")
+        plt.grid(True)
+        plt.show()
