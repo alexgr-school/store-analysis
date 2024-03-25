@@ -89,42 +89,6 @@ class DataVisualizer:
         if self.view:
             plt.show()
 
-    def plot_transaction_price_average(self):
-        # Calcul du montant total des achats par client
-        metrics_df = (
-            self.data.groupby("price")
-            .agg(
-                {
-                    "price": "sum",
-                    "session_id": "nunique",
-                    "categ": lambda x: x.mode().iloc[0],
-                }
-            )
-            .rename(
-                columns={
-                    "price": "Total Purchase",
-                    "session_id": "Frequency",
-                    "categ": "Most Purchased Category",
-                }
-            )
-            .reset_index()
-        )
-
-        sns.histplot(
-            metrics_df["Total Purchase"] / metrics_df["Frequency"],
-            bins=30,
-            kde=False,
-            color="#0BBB9E",
-        )
-        plt.title("Montant moyen des achats par transaction")
-        plt.xlabel("Nombre de transactions")
-        plt.ylabel("Prix moyen")
-        plt.grid(True)
-        file_path = os.path.join(graphics_folder_path, "transaction_price_average.png")
-        plt.savefig(file_path, dpi=300)
-        if self.view:
-            plt.show()
-
     def plot_age_dispersal(self):
         tmp_data = self.data.drop_duplicates(subset="client_id")
 

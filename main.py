@@ -32,7 +32,6 @@ def main():
     # visualizer.plot_sales_per_age()
     # visualizer.plot_sales_per_age_category()
     # visualizer.plot_sales_per_sex_age()
-    # visualizer.plot_transaction_price_average()
     # visualizer.plot_age_dispersal()
     # visualizer.plot_products_price_lorenz_curve()
     # visualizer.plot_clients_age_lorenz_curve()
